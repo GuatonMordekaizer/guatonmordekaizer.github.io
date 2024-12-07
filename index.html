@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Crédito Hipotecario</title>
+
+  <!-- Bootstrap CSS -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoZ1p3gK9vc2kKZo1DSo6XbLKF0he5e3y1joJfZ7ZGOYZAH" 
+    crossorigin="anonymous"
+  >
+
+  <!-- Archivo CSS personalizado -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mb-4">Simulador de Crédito Hipotecario</h1>
+
+    <!-- Formulario principal -->
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="card p-4">
+          <h4 class="text-center">Ingrese los datos del crédito hipotecario</h4>
+          <form id="mortgage-form">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="valorVivienda" class="form-label">Valor de la Vivienda (UF)</label>
+                <input type="number" class="form-control" id="valorVivienda" placeholder="Ej: 3000">
+              </div>
+              <div class="col-md-6">
+                <label for="porcentajeBanco" class="form-label">Porcentaje cubierto por el Banco (%)</label>
+                <input type="number" class="form-control" id="porcentajeBanco" placeholder="Ej: 80">
+              </div>
+              <div class="col-md-6">
+                <label for="tasaInteres" class="form-label">Tasa de Interés Anual (%)</label>
+                <input type="number" class="form-control" id="tasaInteres" placeholder="Ej: 3.5">
+              </div>
+              <div class="col-md-6">
+                <label for="plazo" class="form-label">Plazo (años)</label>
+                <input type="number" class="form-control" id="plazo" placeholder="Ej: 20">
+              </div>
+              <div class="col-md-6">
+                <label for="seguroDesgravamen" class="form-label">Seguro Desgravamen (UF)</label>
+                <input type="number" class="form-control" id="seguroDesgravamen" placeholder="Ej: 0.1">
+              </div>
+              <div class="col-md-6">
+                <label for="seguroIncendio" class="form-label">Seguro de Incendio (UF)</label>
+                <input type="number" class="form-control" id="seguroIncendio" placeholder="Ej: 0.2">
+              </div>
+            </div>
+            <div class="d-grid mt-4">
+              <button type="button" class="btn btn-primary" id="calculateMortgage">Calcular</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resumen -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="card p-4">
+          <h4 class="text-center">Resumen</h4>
+          <p><strong>Valor de la Vivienda:</strong> <span id="valorViviendaResumen"></span> UF</p>
+          <p><strong>Monto Financiado por el Banco:</strong> <span id="montoBancoResumen"></span> UF</p>
+          <p><strong>Plazo:</strong> <span id="plazoResumen"></span> meses</p>
+          <p><strong>Total Pagado en Intereses:</strong> <span id="totalInteresesResumen"></span> UF</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de amortización y gráfica -->
+    <div class="card mt-5 p-4">
+      <div class="d-flex flex-column flex-lg-row align-items-start justify-content-between">
+        <!-- Tabla -->
+        <div class="w-100 w-lg-50 me-lg-3">
+          <h2 class="text-center">Tabla de Amortización</h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered text-center align-middle">
+              <thead>
+                <tr>
+                  <th>Mes o Cuota</th>
+                  <th>Balance Inicial</th>
+                  <th>Interés</th>
+                  <th>Amortización</th>
+                  <th>Dividendo</th>
+                  <th>Balance Final</th>
+                  <th>Seguro</th>
+                  <th>Dividendo con Seguro</th>
+                </tr>
+              </thead>
+              <tbody id="amortizationTableBody">
+                <!-- Filas dinámicas -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Gráfico -->
+        <div class="w-100 w-lg-50">
+          <h2 class="text-center">Gráfica de Interés y Amortización</h2>
+          <canvas id="comparisonChart" style="max-height: 400px;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle JS -->
+  <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-w76AAgY3Ek6lVx9uClTR9nZqJH0fm65R3F2QuGSEAsB13V1D9e8ll6RYfIMcq5iK" 
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Archivo JS personalizado -->
+  <script src="script.js"></script>
+</body>
+</html>
