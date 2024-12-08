@@ -3,7 +3,16 @@ let chartInstance = null; // Variable global para manejar la instancia del gráf
 // Función para obtener el valor de la UF desde la API
 async function obtenerValorUF() {
   try {
-    const response = await fetch("https://mindicador.cl/api/uf/08-12-2024");
+    // Obtener la fecha actual en formato adecuado para la API (DD-MM-YYYY)
+    const hoy = new Date();
+    const dia = String(hoy.getDate()).padStart(2, '0'); // Asegurarse de tener dos dígitos
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0'); // Los meses van de 0 a 11, por eso sumamos 1
+    const anio = hoy.getFullYear();
+    const fechaActual = `${dia}-${mes}-${anio}`; // Formato DD-MM-YYYY
+
+    // Construir la URL con la fecha actual
+    const url = `https://mindicador.cl/api/uf/${fechaActual}`;
+    const response = await fetch(url);
     const data = await response.json();
     return data.serie[0].valor; // Retorna el valor actual de la UF
   } catch (error) {
